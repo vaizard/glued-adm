@@ -1,0 +1,93 @@
+---
+routes:
+
+    #########################################################
+    # ADM / NODES                                           #
+    #########################################################
+
+    fe_adm:
+        service:    adm
+        path:       /adm
+        pattern:    /adm
+        label:      Adm
+        icon:       GiSkeleton
+        dscr:       A routegroup, no methods here.
+
+    #########################################################
+    # ADM / PHPINFO                                         #
+    #########################################################
+
+    fe_adm_phpinfo:
+        pattern:    ${routes.fe_adm.path}/phpinfo
+        path:       ${routes.fe_adm.path}/phpinfo
+        label:      Phpinfo()
+        dscr:       ~
+        icon:       FaHeartbeat
+        service:    adm
+        provides:   
+        methods:
+            get:    Glued\Controllers\ServiceController:health
+
+    fe_adm_adminer:
+        pattern:    ${routes.fe_adm.path}/adminer
+        path:       ${routes.fe_adm.path}/adminer
+        label:      Adminer
+        dscr:       ~
+        icon:       FaHeartbeat
+        service:    adm
+        provides:   
+        methods:
+            get:    Glued\Controllers\ServiceController:health
+
+    #########################################################
+    # ADM / NODES                                           #
+    #########################################################
+
+    be_adm:
+        service:    adm
+        path:       /api/adm
+        pattern:    /api/adm
+        label:      Adm
+        icon:       GiSkeleton
+        dscr:       A routegroup, no methods here.
+
+    #########################################################
+    # ADM / HEALTH                                          #
+    #########################################################
+
+    be_adm_health_v1:
+        pattern:    ${routes.be_adm.path}/health/v1
+        path:       ${routes.be_adm.path}/health/v1
+        label:      Adm health
+        dscr:       A healthcheck endpoint for the microservice.
+        icon:       FaHeartbeat
+        service:    adm
+        provides:   health
+        methods:
+            get:    Glued\Controllers\ServiceController:health
+
+    #########################################################
+    # ADM / ROUTES                                          #
+    #########################################################
+
+    be_adm_routes_list_v1:
+        pattern:    ${routes.be_adm.path}/routes/list/v1
+        path:       ${routes.be_adm.path}/routes/list/v1
+        label:      Adm routes list
+        dscr:       A route list endpoint for the microservice.
+        icon:       SiReactrouter
+        service:    adm
+        provides:   routes_list
+        methods:
+            get:    Glued\Controllers\ServiceController:routes_list
+    be_adm_routes_tree_v1:
+        pattern:    ${routes.be_adm.path}/routes/tree/v1
+        path:       ${routes.be_adm.path}/routes/tree/v1
+        label:      Adm routes tree - ${routes.host}
+        dscr:       A route tree endpoint for the microservice.
+        icon:       SiReactrouter
+        service:    adm
+        provides:   routes_tree
+        methods:
+            get:    Glued\Controllers\ServiceController:routes_tree
+

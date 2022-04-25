@@ -1,0 +1,33 @@
+{
+    "require": {
+        "vrana/adminer": "^4.8"
+    },
+  "require-dev": {
+    "ergebnis/composer-normalize": "^2"
+  },
+    "scripts": {
+        "post-install-cmd": [
+            "cd glued",
+            "wget https://www.adminer.org/latest-mysql-en.php -O glued/adminer.php"
+        ],
+        "post-update-cmd": [
+            "cd glued",
+            "wget https://www.adminer.org/latest-mysql-en.php -O glued/adminer.php"
+        ],
+        "nginx": [
+            "cp -r glued/Config/Nginx/* /etc/nginx",
+            "ln -sf /etc/nginx/sites-available/$(basename `pwd`) /etc/nginx/sites-enabled",
+            "htpasswd -b /etc/nginx/.htaccess-glued-adm glued `cat /etc/machine-id`",
+            "systemctl reload nginx"
+        ]
+    },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    }
+  },
+    "preferred-install": {
+        "*": "dist"
+    }
+
+}
