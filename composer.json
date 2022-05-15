@@ -17,7 +17,8 @@
         "nginx": [
             "cp -r glued/Config/Nginx/* /etc/nginx",
             "ln -sf /etc/nginx/sites-available/$(basename `pwd`) /etc/nginx/sites-enabled",
-            "htpasswd -bc /etc/nginx/.htaccess-glued-adm glued `cat /etc/machine-id`",
+            "touch /etc/nginx/.htaccess-glued-adm",
+            "htpasswd -b /etc/nginx/.htaccess-glued-adm glued `cat /etc/machine-id`",
             "systemctl reload nginx"
         ]
     },
