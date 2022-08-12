@@ -1,25 +1,37 @@
 {
     "require": {
-        "vrana/adminer": "^4.8"
+        "vrana/adminer": "^4.8",
+        "vaizard/glued-lib": "dev-main"
     },
   "require-dev": {
     "ergebnis/composer-normalize": "^2"
   },
     "scripts": {
+        "configure": [
+            "vendor/vaizard/glued-lib/src/Scripts/initpaths.sh",
+            "vendor/vaizard/glued-lib/src/Scripts/cacheroutes.sh"
+        ],
         "post-install-cmd": [
             "cd glued",
-            "wget https://www.adminer.org/latest-mysql-en.php -O glued/adminer.php"
+            "wget https://www.adminer.org/latest-mysql-en.php -O glued/adminer.php",
+            "composer configure || echo \"[FAIL] Failed to configure glued. Please make sure all env variables are set. Rerun composer configure.\"",
+            "echo \"Run 'composer nginx' manually to pick restart this microservice\""
         ],
         "post-update-cmd": [
             "cd glued",
-            "wget https://www.adminer.org/latest-mysql-en.php -O glued/adminer.php"
+            "wget https://www.adminer.org/latest-mysql-en.php -O glued/adminer.php",
+            "composer configure || echo \"[FAIL] Failed to configure glued. Please make sure all env variables are set. Rerun composer configure.\"",
+            "echo \"Run 'composer nginx' manually to pick restart this microservice\""
         ],
         "nginx": [
-            "cp -r glued/Config/Nginx/* /etc/nginx",
-            "ln -sf /etc/nginx/sites-available/$(basename `pwd`) /etc/nginx/sites-enabled",
             "touch /etc/nginx/.htaccess-glued-adm",
             "htpasswd -b /etc/nginx/.htaccess-glued-adm glued `cat /etc/machine-id`",
-            "systemctl reload nginx"
+            "vendor/vaizard/glued-lib/src/Scripts/nginx.sh",
+            "vendor/vaizard/glued-lib/src/Scripts/nginx-reload.sh"
+        ],
+        "get-credentials": [
+            "echo \"username: glued\"",
+            "echo \"password: $(cat /etc/machine-id)\""
         ]
     },
   "config": {

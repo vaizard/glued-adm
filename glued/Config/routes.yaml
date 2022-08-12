@@ -65,29 +65,3 @@ routes:
         provides:   health
         methods:
             get:    Glued\Controllers\ServiceController:health
-
-    #########################################################
-    # ADM / ROUTES                                          #
-    #########################################################
-
-    be_adm_routes_list_v1:
-        pattern:    ${routes.be_adm.path}/routes/list/v1
-        path:       ${routes.be_adm.path}/routes/list/v1
-        label:      Adm routes list
-        dscr:       A route list endpoint for the microservice.
-        icon:       SiReactrouter
-        service:    adm
-        provides:   routes_list
-        methods:
-            get:    Glued\Controllers\ServiceController:routes_list
-    be_adm_routes_tree_v1:
-        pattern:    ${routes.be_adm.path}/routes/tree/v1
-        path:       ${routes.be_adm.path}/routes/tree/v1
-        label:      Adm routes tree - ${routes.host}
-        dscr:       A route tree endpoint for the microservice.
-        icon:       SiReactrouter
-        service:    adm
-        provides:   routes_tree
-        methods:
-            get:    Glued\Controllers\ServiceController:routes_tree
-
