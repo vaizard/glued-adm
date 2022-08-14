@@ -22,22 +22,19 @@ routes:
         path:       ${routes.fe_adm.path}/phpinfo
         label:      Phpinfo()
         dscr:       ~
-        icon:       FaHeartbeat
         service:    adm
-        provides:   
         methods:
-            get:    Glued\Controllers\ServiceController:health
+            get:    ~
 
     fe_adm_adminer:
         pattern:    ${routes.fe_adm.path}/adminer
         path:       ${routes.fe_adm.path}/adminer
         label:      Adminer
         dscr:       ~
-        icon:       FaHeartbeat
         service:    adm
-        provides:   
         methods:
-            get:    Glued\Controllers\ServiceController:health
+            get:    ~
+            post:   ~
 
     #########################################################
     # ADM / NODES                                           #
@@ -60,8 +57,7 @@ routes:
         path:       ${routes.be_adm.path}/health/v1
         label:      Adm health
         dscr:       A healthcheck endpoint for the microservice.
-        icon:       FaHeartbeat
         service:    adm
         provides:   health
         methods:
-            get:    Glued\Controllers\ServiceController:health
+            get:    ~

@@ -1,7 +1,8 @@
 {
     "require": {
         "vrana/adminer": "^4.8",
-        "vaizard/glued-lib": "dev-main"
+        "vaizard/glued-lib": "dev-main",
+        "ext-json": "*"
     },
   "require-dev": {
     "ergebnis/composer-normalize": "^2"
