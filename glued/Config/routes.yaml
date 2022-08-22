@@ -10,7 +10,6 @@ routes:
         path:       /adm
         pattern:    /adm
         label:      Adm
-        icon:       GiSkeleton
         dscr:       A routegroup, no methods here.
 
     #########################################################
@@ -45,7 +44,6 @@ routes:
         path:       /api/adm
         pattern:    /api/adm
         label:      Adm
-        icon:       GiSkeleton
         dscr:       A routegroup, no methods here.
 
     #########################################################
