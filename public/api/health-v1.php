@@ -7,7 +7,7 @@ $data = [
     'status' => 'OK',
     'params' => $params,
     'service' => basename(__ROOT__),
-    'provided-for' => $_SERVER['X-GLUED-AUTH-UUID'] ?? 'anon'
+    'provided-for' => $_SERVER['X-GLUED-AUTH-UUID'] ?? 'anonymous'
 ];
 
 header("Content-Type: application/json");

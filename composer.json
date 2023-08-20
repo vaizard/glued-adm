@@ -1,6 +1,6 @@
 {
     "require": {
-        "vrana/adminer": "^4.8",
+        "vrana/adminer": "^4.8.1",
         "vaizard/glued-lib": "dev-main",
         "ext-json": "*"
     },
@@ -11,6 +11,9 @@
         "configure": [
             "vendor/vaizard/glued-lib/src/Scripts/initpaths.sh",
             "vendor/vaizard/glued-lib/src/Scripts/cacheroutes.sh"
+        ],
+        "migrate": [
+          "vendor/vaizard/glued-lib/src/Scripts/migrate.sh"
         ],
         "post-install-cmd": [
             "cd glued",

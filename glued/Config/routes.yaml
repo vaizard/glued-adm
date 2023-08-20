@@ -59,3 +59,21 @@ routes:
         provides:   health
         methods:
             get:    ~
+
+    be_adm_network_arp_v1:
+        pattern:    ${routes.be_adm.path}/network/arp/v1
+        path:       ${routes.be_adm.path}/network/arp/v1
+        label:      Arp-scan
+        dscr:       Get all devices on network.
+        service:    adm
+        methods:
+            get:    ~
+
+    be_adm_network_map_v1:
+        pattern:    ${routes.be_adm.path}/network/map/v1
+        path:       ${routes.be_adm.path}/network/map/v1
+        label:      Nmap
+        dscr:       Probe most common ports on network devices.
+        service:    adm
+        methods:
+            get:    ~
