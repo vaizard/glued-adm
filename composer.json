@@ -17,13 +17,13 @@
         ],
         "post-install-cmd": [
             "cd glued",
-            "wget https://www.adminer.org/latest-mysql-en.php --no-check-certificate -O glued/adminer.php",
+            "curl -s https://api.github.com/repos/adminerevo/adminerevo/releases/latest | grep 'browser_download_url.*adminer-' | cut -d '\"' -f 4 | wget -O glued/adminer.php -i -",
             "composer configure || echo \"[FAIL] Failed to configure glued. Please make sure all env variables are set. Rerun composer configure.\"",
             "echo \"Run 'composer nginx' manually to pick restart this microservice\""
         ],
         "post-update-cmd": [
             "cd glued",
-            "wget https://www.adminer.org/latest-mysql-en.php --no-check-certificate -O glued/adminer.php",
+            "curl -s https://api.github.com/repos/adminerevo/adminerevo/releases/latest | grep 'browser_download_url.*adminer-' | cut -d '\"' -f 4 | wget -O glued/adminer.php -i -",
             "composer configure || echo \"[FAIL] Failed to configure glued. Please make sure all env variables are set. Rerun composer configure.\"",
             "echo \"Run 'composer nginx' manually to pick restart this microservice\""
         ],
