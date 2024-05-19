@@ -14,6 +14,7 @@ paths:
       summary: PHP config
       description: Returns phpinfo()
       operationId: AdmPhpinfo
+      x-glued-method: false
       responses:
         '200':
           description: Ok
@@ -24,6 +25,7 @@ paths:
       summary: Adminer
       description: ""
       operationId: AdmAdminerGet
+      x-glued-method: false
       responses:
         '200':
           description: Ok
@@ -31,6 +33,7 @@ paths:
       summary: Adminer
       description: ""
       operationId: AdmAdminerPost
+      x-glued-method: false
       responses:
         '200':
           description: Ok
@@ -41,6 +44,7 @@ paths:
       summary: Adm health
       description: A healthcheck endpoint for the microservice.
       operationId: AdmHealth
+      x-glued-method: Glued\Controllers\ServiceController:getHealth
       responses:
         '200':
           description: Ok
@@ -50,7 +54,8 @@ paths:
     get:
       summary: Arp-scan
       description: Get all devices on network.
-      operationId: NetworkArp
+      operationId: AdmNetworkArp
+      x-glued-method: Glued\Controllers\NetworkController:arp
       responses:
         '200':
           description: Ok
@@ -61,6 +66,7 @@ paths:
       summary: Nmap
       description: Probe most common ports on network devices.
       operationId: NetworkMap
+      x-glued-method: Glued\Controllers\NetworkController:nmap
       responses:
         '200':
           description: Ok
