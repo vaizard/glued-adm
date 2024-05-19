@@ -8,8 +8,9 @@
   },
     "scripts": {
         "configure": [
-            "vendor/vaizard/glued-lib/src/Scripts/initpaths.sh",
-            "vendor/vaizard/glued-lib/src/Scripts/rebuild-datacache.sh"
+          "vendor/vaizard/glued-lib/src/Scripts/initpaths.sh",
+          "vendor/vaizard/glued-lib/src/Scripts/rebuild-datacache.sh",
+          "Glued\\Lib\\ComposerHooks::configTool"
         ],
         "migrate": [
           "vendor/vaizard/glued-lib/src/Scripts/migrate.sh"
