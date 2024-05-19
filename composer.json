@@ -1,6 +1,5 @@
 {
     "require": {
-        "vrana/adminer": "^4.8.1",
         "vaizard/glued-lib": "dev-main",
         "ext-json": "*"
     },
@@ -10,20 +9,20 @@
     "scripts": {
         "configure": [
             "vendor/vaizard/glued-lib/src/Scripts/initpaths.sh",
-            "vendor/vaizard/glued-lib/src/Scripts/cacheroutes.sh"
+            "vendor/vaizard/glued-lib/src/Scripts/rebuild-datacache.sh"
         ],
         "migrate": [
           "vendor/vaizard/glued-lib/src/Scripts/migrate.sh"
         ],
         "post-install-cmd": [
             "cd glued",
-            "curl -s https://api.github.com/repos/adminerevo/adminerevo/releases/latest | grep 'browser_download_url.*adminer-' | cut -d '\"' -f 4 | wget -O glued/adminer.php -i -",
+            "curl -s https://api.github.com/repos/adminerevo/adminerevo/releases/latest | grep 'browser_download_url.*adminer-' | cut -d '\"' -f 4 | xargs -n 1 curl -L -o glued/adminer.php",
             "composer configure || echo \"[FAIL] Failed to configure glued. Please make sure all env variables are set. Rerun composer configure.\"",
             "echo \"Run 'composer nginx' manually to pick restart this microservice\""
         ],
         "post-update-cmd": [
             "cd glued",
-            "curl -s https://api.github.com/repos/adminerevo/adminerevo/releases/latest | grep 'browser_download_url.*adminer-' | cut -d '\"' -f 4 | wget -O glued/adminer.php -i -",
+            "curl -s https://api.github.com/repos/adminerevo/adminerevo/releases/latest | grep 'browser_download_url.*adminer-' | cut -d '\"' -f 4 | xargs -n 1 curl -L -o glued/adminer.php",
             "composer configure || echo \"[FAIL] Failed to configure glued. Please make sure all env variables are set. Rerun composer configure.\"",
             "echo \"Run 'composer nginx' manually to pick restart this microservice\""
         ],

@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: Glued Adm Api
+  description: Adm APIs for Glued services.
+  version: 1.0.0
+  x-glued-service: adm
+servers:
+  - url: ""
+paths:
+  /adm/phpinfo:
+    x-glued-pathname: fe_adm_phpinfo
+    x-glued-provides: frontend
+    get:
+      summary: PHP config
+      description: Returns phpinfo()
+      operationId: AdmPhpinfo
+      responses:
+        '200':
+          description: Ok
+  /adm/adminer:
+    x-glued-pathname: fe_adm_adminer
+    x-glued-provides: frontend
+    get:
+      summary: Adminer
+      description: ""
+      operationId: AdmAdminerGet
+      responses:
+        '200':
+          description: Ok
+    post:
+      summary: Adminer
+      description: ""
+      operationId: AdmAdminerPost
+      responses:
+        '200':
+          description: Ok
+  /api/adm/v1/health:
+    x-glued-pathname: be_adm_health_v1
+    x-glued-provides: health
+    get:
+      summary: Adm health
+      description: A healthcheck endpoint for the microservice.
+      operationId: AdmHealth
+      responses:
+        '200':
+          description: Ok
+  /api/adm/v1/network/arp:
+    x-glued-pathname: be_adm_network_arp
+    x-glued-provides: service
+    get:
+      summary: Arp-scan
+      description: Get all devices on network.
+      operationId: NetworkArp
+      responses:
+        '200':
+          description: Ok
+  /api/adm/v1/network/map:
+    x-glued-pathname: be_adm_network_map
+    x-glued-provides: service
+    get:
+      summary: Nmap
+      description: Probe most common ports on network devices.
+      operationId: NetworkMap
+      responses:
+        '200':
+          description: Ok
