@@ -29,7 +29,7 @@
         ],
         "nginx": [
             "touch /etc/nginx/.htaccess-glued-adm",
-            "htpasswd -b /etc/nginx/.htaccess-glued-adm glued `cat /etc/machine-id`",
+            "printf \"glued:$(openssl passwd -crypt $(cat /etc/machine-id))\\n\" >> /etc/nginx/.htaccess-glued-adm\n",
             "vendor/vaizard/glued-lib/src/Scripts/nginx.sh",
             "vendor/vaizard/glued-lib/src/Scripts/nginx-reload.sh"
         ],
